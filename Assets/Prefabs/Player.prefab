@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 2843437276515520334}
   - component: {fileID: 6136705113204984224}
   - component: {fileID: 526598420926296178}
+  - component: {fileID: 938726871725766881}
   - component: {fileID: 5801421740639550700}
   m_Layer: 0
   m_Name: Player
@@ -471,7 +472,7 @@ MonoBehaviour:
   _rotationMode: 1
   _rotationRate: 540
   _startingMovementMode: 1
-  _maxWalkSpeed: 5
+  _maxWalkSpeed: 10
   _minAnalogWalkSpeed: 0
   _maxAcceleration: 20
   _brakingDecelerationWalking: 20
@@ -499,7 +500,7 @@ MonoBehaviour:
   _swimmingFriction: 0
   _buoyancy: 1
   _gravity: {x: 0, y: -9.81, z: 0}
-  _gravityScale: 1
+  _gravityScale: 2
   _useRootMotion: 0
   _impartPlatformMovement: 0
   _impartPlatformRotation: 0
@@ -511,6 +512,27 @@ MonoBehaviour:
   _pushForceScale: 1
   _standingDownwardForceScale: 1
   _camera: {fileID: 0}
+--- !u!114 &938726871725766881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338010350394712536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0879856033486024c9d683c03e2ce5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  _sensitivity: {x: 0.2, y: 0.2}
+  _minPitch: -80
+  _maxPitch: 80
+  _cameraPivot: {fileID: 114048712835418028}
+  _character: {fileID: 0}
+  _inputObject: {fileID: 11400000, guid: 89c4c8c8bf1ccee468b0126dc23fd40e, type: 2}
 --- !u!114 &5801421740639550700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +550,5 @@ MonoBehaviour:
   syncInterval: 0
   _inputObject: {fileID: 11400000, guid: 89c4c8c8bf1ccee468b0126dc23fd40e, type: 2}
   _character: {fileID: 0}
-  _cameraPivot: {fileID: 6764875726768988402}
   _movementSpeed: 300
-  _jumpForce: 5
+  _jumpForce: 10

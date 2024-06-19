@@ -11,7 +11,6 @@ namespace Movement
         private InputObject _inputObject;
 
         [SerializeField] private Character _character;
-        [SerializeField] private GameObject _cameraPivot;
 
         [Header("Movement Settings")] [SerializeField]
         private float _movementSpeed = 5f;
@@ -25,7 +24,6 @@ namespace Movement
         private void Awake()
         {
             _character = GetComponent<Character>();
-            _character.camera = Camera.main;
         }
 
         private void Start()

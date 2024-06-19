@@ -28,6 +28,9 @@ namespace Input
         public event Action JumpEvent;
         public event Action JumpCanceledEvent;
 
+        public event Action<Vector2> LookEvent;
+        public event Action LookCanceledEvent;
+
         public void SetGameplay()
         {
             _playerInput.Gameplay.Enable();
@@ -66,6 +69,21 @@ namespace Input
             }
         }
 
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    LookEvent?.Invoke(context.ReadValue<Vector2>());
+                    break;
+                case InputActionPhase.Canceled:
+                    LookCanceledEvent?.Invoke();
+                    break;
+            }
+        }
+
+        #region UI
+
         public void OnPause(InputAction.CallbackContext context)
         {
             throw new NotImplementedException();
@@ -100,5 +118,8 @@ namespace Input
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
     }
 }
