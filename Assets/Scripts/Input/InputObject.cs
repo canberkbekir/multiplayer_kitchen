@@ -28,6 +28,9 @@ namespace Input
         public event Action JumpEvent;
         public event Action JumpCanceledEvent;
 
+        public event Action InteractEvent;
+        public event Action InteractCanceledEvent;
+
         public event Action<Vector2> LookEvent;
         public event Action LookCanceledEvent;
 
@@ -78,6 +81,19 @@ namespace Input
                     break;
                 case InputActionPhase.Canceled:
                     LookCanceledEvent?.Invoke();
+                    break;
+            }
+        }
+
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    InteractEvent?.Invoke();
+                    break;
+                case InputActionPhase.Canceled:
+                    InteractCanceledEvent?.Invoke();
                     break;
             }
         }
