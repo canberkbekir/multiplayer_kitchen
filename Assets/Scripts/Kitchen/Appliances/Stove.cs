@@ -1,14 +1,19 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Kitchen.Base;
 using Kitchen.Cooking;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Kitchen.Appliances
 {
-    public class Stove : KitchenAppliance,IInteractable
+    public class Stove : KitchenAppliance, IInteractable
     {
         public string InteractText { get; } = "Cook";
+        public event Action OnStoveTurnedOn;
+        public event Action OnStoveTurnedOff;
+
         private void Start()
         {
             applianceName = "Stove";
@@ -21,7 +26,7 @@ namespace Kitchen.Appliances
             // if (status == KitchenApplianceStatus.Cooking || currentIngredients.All(ingredient => !ingredient)) return;
             if (status == KitchenApplianceStatus.Cooking) return;
 
-            if(status == KitchenApplianceStatus.Done)
+            if (status == KitchenApplianceStatus.Done)
             {
                 GetIngredient();
                 return;
@@ -29,7 +34,7 @@ namespace Kitchen.Appliances
 
             if (status == KitchenApplianceStatus.Empty)
             {
-               await Cook();
+                await Cook();
             }
         }
 
@@ -44,7 +49,6 @@ namespace Kitchen.Appliances
         }
 
 
-
         public void Interact()
         {
             Use(currentIngredients);
@@ -52,16 +56,20 @@ namespace Kitchen.Appliances
 
         private async Task Cook()
         {
+            OnStoveTurnedOn?.Invoke();
             Debug.Log("Cooking started");
             status = KitchenApplianceStatus.Cooking;
             await Task.Delay(3000);
             status = KitchenApplianceStatus.Done;
             Debug.Log("Cooking done");
+            OnStoveTurnedOff?.Invoke();
         }
 
         private void GetIngredient()
         {
             status = KitchenApplianceStatus.Empty;
         }
+
+
     }
 }

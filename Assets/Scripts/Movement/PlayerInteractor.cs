@@ -1,3 +1,4 @@
+using System;
 using Input;
 using Kitchen.Base;
 using UI;
@@ -7,16 +8,18 @@ namespace Movement
 {
     public class PlayerInteractor : MonoBehaviour
     {
-        [Header("Dependencies")] [SerializeField]
-        private Transform playerCamera;
+        [Header("Dependencies")]
+        [SerializeField] private Transform playerCamera;
 
         [SerializeField] private InputObject inputObject;
 
-        [Header("Settings")] [SerializeField] private float maxDistance = 2f;
+        [Header("Settings")]
+        [SerializeField] private float maxDistance = 2f;
         [SerializeField] private LayerMask interactableLayer;
 
         private bool _isInteracting;
         private bool _hasInteracted;
+
 
         private void Start()
         {

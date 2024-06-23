@@ -31,6 +31,9 @@ namespace Input
         public event Action InteractEvent;
         public event Action InteractCanceledEvent;
 
+        public event Action DropEvent;
+        public event Action DropCanceledEvent;
+
         public event Action<Vector2> LookEvent;
         public event Action LookCanceledEvent;
 
@@ -94,6 +97,19 @@ namespace Input
                     break;
                 case InputActionPhase.Canceled:
                     InteractCanceledEvent?.Invoke();
+                    break;
+            }
+        }
+
+        public void OnDrop(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    DropEvent?.Invoke();
+                    break;
+                case InputActionPhase.Canceled:
+                    DropCanceledEvent?.Invoke();
                     break;
             }
         }
